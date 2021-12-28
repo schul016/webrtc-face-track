@@ -12,7 +12,7 @@ let size = window.size = [0, 0]
 let center = window.center = [0, 0]
 
 const setWindowVariable = window.setWindowVariable = (key, value) => {
-    window[key] = value;
+    window[key] = value
 }
 
 const UPDATE_FACE_DETECT_EVERY_N_FRAMES = 30
@@ -50,7 +50,7 @@ const canvasDraw = async () => {
             const yCenterChange = newCenter[1] - center[1]
             const centerChange = Math.sqrt(xCenterChange*xCenterChange + yCenterChange*yCenterChange)
             if (relativeSizeChange > 0.25 || centerChange > 50) {
-                console.log("camera shift");
+                console.log("camera shift")
                 size = newSize
                 center = newCenter
             }
@@ -65,7 +65,10 @@ const canvasDraw = async () => {
     let updateFaceDectectEveryNFrames = parseInt(window.FramesPerFR) || UPDATE_FACE_DETECT_EVERY_N_FRAMES
     if (counter % updateFaceDectectEveryNFrames == 0) {
         counter = 1
-        predictions = await model.estimateFaces(video)
+        let newPredictions = await model.estimateFaces(video)
+        if (newPredictions && newPredictions.length) {
+            predictions = newPredictions
+        }
     }
     counter++
     requestAnimationFrame(canvasDraw)
