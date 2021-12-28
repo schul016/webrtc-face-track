@@ -8,6 +8,9 @@
 
 "use strict"
 
+let size = window.size = [0, 0]
+let center = window.center = [0, 0]
+
 const setWindowVariable = window.setWindowVariable = (key, value) => {
     window[key] = value;
 }
@@ -39,8 +42,18 @@ const canvasDraw = async () => {
         for (let i = 0; i < predictions.length; i++) {
             const start = predictions[i].topLeft
             const end = predictions[i].bottomRight
-            const size = [end[0] - start[0], end[1] - start[1]]
-            const center = [start[0] + size[0]/2, start[1] + size[1]/2]
+            const newSize = [end[0] - start[0], end[1] - start[1]]
+            const newCenter = [start[0] + size[0]/2, start[1] + size[1]/2]
+            const sizeChange = Math.abs(newSize[0] - size[0]) * Math.abs(newSize[1] - size[1])
+            const relativeSizeChange = sizeChange/(size[0] * size[1] + 1)
+            const xCenterChange = newCenter[0] - center[0]
+            const yCenterChange = newCenter[1] - center[1]
+            const centerChange = Math.sqrt(xCenterChange*xCenterChange + yCenterChange*yCenterChange)
+            if (relativeSizeChange > 0.25 || centerChange > 50) {
+                console.log("camera shift");
+                size = newSize
+                center = newCenter
+            }
             const targetHeight = window.TargetHeight || TARGET_HEIGHT
             const targetSize = [0.75*targetHeight, targetHeight]
             const targetCenter = [(canvas.width - targetSize[0])/2, (canvas.height - targetSize[1])/2]
