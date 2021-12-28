@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!--
+ *  Copyright (c) 2015 The WebRTC project authors. All Rights Reserved.
+ *
+ *  Use of this source code is governed by a BSD-style license
+ *  that can be found in the LICENSE file in the root of the source
+ *  tree.
+-->
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="description" content="WebRTC code samples">
+    <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1">
+    <meta itemprop="description" content="Client-side WebRTC code samples">
+    <meta itemprop="image" content="img/webrtc-icon-192x192.png">
+    <meta itemprop="name" content="WebRTC code samples">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta id="theme-color" name="theme-color" content="#ffffff">
+
+    <base target="_blank">
+
+    <title>getUserMedia to canvas</title>
+
+    <link rel="icon" sizes="192x192" href="img/webrtc-icon-192x192.png">
+    <link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/app.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
+
+</head>
+
+<body>
+
+    <div id="container" class="container">
+
+        <div class="row">
+            <h1><a href="//webrtc.github.io/samples/" title="WebRTC samples homepage">WebRTC samples</a>
+                <span>getUserMedia
+                    ⇒ canvas</span>
+            </h1>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <video playsinline autoplay></video>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <div id="app">Loading...</div>
+
+                <div id="blazor-error-ui">
+                    An unhandled error has occurred.
+                    <a href="" class="reload">Reload</a>
+                    <a class="dismiss">🗙</a>
+                </div>
+            </div>
+            <div class="col-8">
+                <canvas></canvas>
+            </div>
+        </div>
+
+        <div class="row">
+            <p>Draw a frame from the video onto the canvas element using the <code>drawImage()</code> method.</p>
+        </div>
+        <div class="row">
+            <p>The variables <code>canvas</code>, <code>video</code> and <code>stream</code> are in global scope, so you
+                can
+                inspect them from the console.</p>
+        </div>
+        <div class="row">
+            <a href="https://github.com/schul016/webrtc-v2c" title="View source for this page on GitHub"
+                id="viewSource">View source on GitHub</a>
+        </div>
+
+    </div>
+
+    <script src="_framework/blazor.webassembly.js"></script>
+    <script src="js/tfjs.js"></script>
+    <script src="js/blazeface.js"></script>
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
